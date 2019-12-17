@@ -10,6 +10,29 @@ import java.util.ArrayList;
 @Controller
 public class SpaDayController {
 
+    @GetMapping(value="")
+    @ResponseBody
+    public String customerForm () {
+        String html = "<form method = 'post'>" +
+                "Name: <br>" +
+                "<input type = 'text' name = 'name'>" +
+                "<br>Skin type: <br>" +
+                "<select name = 'skintype'>" +
+                "<option value = 'oily'>Oily</option>" +
+                "<option value = 'combination'>Combination</option>" +
+                "<option value = 'normal'>Normal</option>" +
+                "<option value = 'dry'>Dry</option>" +
+                "</select><br>" +
+                "Manicure or Pedicure? <br>" +
+                "<select name = 'manipedi'>" +
+                "<option value = 'manicure'>Manicure</option>" +
+                "<option value = 'pedicure'>Pedicure</option>" +
+                "</select><br>" +
+                "<input type = 'submit' value = 'Submit'>" +
+                "</form>";
+        return html;
+    }
+
     public boolean checkSkinType(String skinType, String facialType) {
         if (skinType.equals("oily")) {
             if (facialType.equals("Microdermabrasion") || facialType.equals("Rejuvenating")) {
@@ -43,29 +66,6 @@ public class SpaDayController {
         }
     }
 
-    @GetMapping(value="")
-    @ResponseBody
-    public String customerForm () {
-        String html = "<form method = 'post'>" +
-                "Name: <br>" +
-                "<input type = 'text' name = 'name'>" +
-                "<br>Skin type: <br>" +
-                "<select name = 'skintype'>" +
-                "<option value = 'oily'>Oily</option>" +
-                "<option value = 'combination'>Combination</option>" +
-                "<option value = 'normal'>Normal</option>" +
-                "<option value = 'dry'>Dry</option>" +
-                "</select><br>" +
-                "Manicure or Pedicure? <br>" +
-                "<select name = 'manipedi'>" +
-                "<option value = 'manicure'>Manicure</option>" +
-                "<option value = 'pedicure'>Pedicure</option>" +
-                "</select><br>" +
-                "<input type = 'submit' value = 'Submit'>" +
-                "</form>";
-        return html;
-    }
-
     @PostMapping(value="")
     public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
 
@@ -82,6 +82,13 @@ public class SpaDayController {
             }
         }
 
+        // added this... necessary without multiple fields?
+        model.addAttribute("name", name);
+        model.addAttribute("skintype", skintype);
+        model.addAttribute("manipedi",manipedi);
+        model.addAttribute("appropriateFacials", appropriateFacials);
+
         return "menu";
     }
+
 }
