@@ -27,6 +27,7 @@ public class SpaDayController {
                 "<select name = 'manipedi'>" +
                 "<option value = 'manicure'>Manicure</option>" +
                 "<option value = 'pedicure'>Pedicure</option>" +
+                "<option value = 'both'>Mani/Pedi Combo</option>" +
                 "</select><br>" +
                 "<input type = 'submit' value = 'Submit'>" +
                 "</form>";
@@ -82,11 +83,20 @@ public class SpaDayController {
             }
         }
 
-        // added this... necessary without multiple fields?
         model.addAttribute("name", name);
         model.addAttribute("skintype", skintype);
         model.addAttribute("manipedi",manipedi);
         model.addAttribute("appropriateFacials", appropriateFacials);
+
+        ArrayList<String> polishChoices = new ArrayList<>();
+        polishChoices.add("#ed553e");
+        polishChoices.add("#ed3e4d");
+        polishChoices.add("#d12c71");
+        polishChoices.add("#a31787");
+        polishChoices.add("#34a39e");
+        polishChoices.add("#63c295");
+
+        model.addAttribute("polishChoices", polishChoices);
 
         return "menu";
     }

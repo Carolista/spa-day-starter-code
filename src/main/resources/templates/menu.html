@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Spa Menu</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Gelasio|Raleway|Montserrat|Satisfy|Vidaloka&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gelasio|Montserrat|Satisfy&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -30,9 +30,9 @@
     </div>
     <div class = "rightbox" id = "clientProfile">
         <h2 class = "header">My Profile</h2>
-        <p th:text = "'Name: ' + ${name}"></p>
-        <p th:text = "'Skin Type: ' + ${skintype}"></p>
-        <p th:text = "'Mani/Pedi: ' + ${manipedi}"></p>
+        <p><u>NAME</u>: <span th:text = "${name}"></span></p>
+        <p><u>SKIN TYPE</u>: <span th:text = "${skintype}"></span></p>
+        <p><u>MANI/PEDI</u>: <span th:text = "${manipedi}"></span></p>
     </div>
     <div class = "rightbox" id = "servicesMenu">
         <h2 class = "header">Menu of Available Services</h2>
@@ -45,11 +45,11 @@
                 <td th:text = "${service}"></td>
             </tr>
         </table>
-        <div th:if = "${manipedi.equals('manicure')}">
+        <div th:if = "${manipedi.equals('manicure') || manipedi.equals('both')}">
             <h3 class = "subheader">Manicure</h3>
             <p th:replace = "fragments :: manicureDescription"></p>
         </div>
-        <div th:if = "${manipedi.equals('pedicure')}">
+        <div th:if = "${manipedi.equals('pedicure') || manipedi.equals('both')}">
             <h3 class = "subheader">Pedicure</h3>
             <p th:replace = "fragments :: pedicureDescription"></p>
         </div>
@@ -57,6 +57,10 @@
 </div>
 
 </div>
+<footer>
+    <div class = "polishintro">Ask about our hottest new colors for your mani/pedi</div>
+    <div class = "polish" th:each = "option : ${polishChoices}" th:style = "'background: ' + ${option}"></div>
+</footer>
 
 </body>
 </html>
