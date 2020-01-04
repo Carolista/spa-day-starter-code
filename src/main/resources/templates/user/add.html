@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+    <body>
+        <h1>Register as a Member</h1>
+
+        <form method = "post" action="/user/add" th:object="${user}">
+
+            <p><label>Username <input type = "text" name = "username" th:value="${username}"/></label><br />
+            <label>E-mail <input type = "email" name = "email" th:value="${email}"/></label><br />
+            <label>Password <input type = "password" name = "password" /></label><br />
+                <label>Confirm Password <input type = "password" name = "confirmPW" /></label></p>
+            <p th:if="${match == false}" style="color:red; font-weight:bold;">Password must be identical in both fields.</p>
+            <input type="submit" value = "Register User" />
+        </form>
+
+    </body>
+
+</html>
