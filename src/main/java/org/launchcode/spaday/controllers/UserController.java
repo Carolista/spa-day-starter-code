@@ -13,38 +13,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("user")
 public class UserController {
 
-    boolean match = true;
+    private boolean match = true;
 
     // Handle user/index.html
 
     @GetMapping
     public String displayAllUsers(Model model) {
-//        model.addAttribute("title", "All Users");
-//        model.addAttribute("users", UserData.getAll());
+        model.addAttribute("title", "All Users");
+        model.addAttribute("users", UserData.getAll());
         return "user/index";
     }
 
     // Handle user/add.html
 
     @GetMapping("add")
-    public String displayAddUserForm() {
+    public String displayAddUserForm(Model model) {
+        model.addAttribute("user", new User());
         return "user/add";
     }
 
     @PostMapping("add")
     public String processAddUserForm(Model model, @ModelAttribute User user, String
-            verify) {
+            confirmPW) {
         model.addAttribute("match", match);
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
-        if (verify.equals(user.getPassword())) {
-            match = true;
-            UserData.add(user);
-            return "redirect:";
-        } else {
+        if (! confirmPW.equals(user.getPassword())) {
             match = false;
             return "user/add";
         }
+        UserData.add(user);
+        return "redirect:";
     }
 
 }

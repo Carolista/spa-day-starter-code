@@ -7,5 +7,21 @@
     <h1>Welcome!</h1>
     <p>As a member of the Viv Day Spa, you now have access to the most luxurious of services, all of which can be customized for your skin type and preferred regimen.</p>
     <a th:href="@{/}"><h3>Create Your Customized Service Profile</h3></a>
+
+    <h3 th:text="${title}"></h3>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tr th:each="user : ${users}">
+            <td th:text = "${user.id}"></td>
+            <td th:text = "${user.username}"></td>
+        </tr>
+    </table>
+
 </body>
 </html>
