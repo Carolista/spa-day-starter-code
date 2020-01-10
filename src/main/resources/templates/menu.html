@@ -4,35 +4,63 @@
     <meta charset="UTF-8" />
     <title>Spa Menu</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Gelasio|Montserrat|Satisfy&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>My Super Fancy Spa</h1>
-<div id = "clientProfile">
-    <h2>My Profile</h2>
-    <p th:text = "${client.skinType}"></p>
-    <p th:text = "${client.nailService}"></p>
+
+<div class = "container">
+
+<div class = "leftcol">
+    <div class = "leftbox">
+        <img id="logo" src = "/images/viv-logo.png" th:src = "@{/images/viv-logo.png}"/>
+    </div>
+    <div class = "leftbox">
+        <p><span id = "vivify">viv·i·fy</span><br>
+            <span id = "pronunciation">/ˈvivəˌfī/</span><br>
+            <span id = "partofspeech">verb</span><br>
+            <span id = "definition">to enliven, awaken</span></p>
+        <p>Thank you for choosing Viv Day Spa! Throughout your experience, you will find deep relaxation of the body, calm for the soul, and a rejuvenation of spirit.</p>
+        <p>If you have any questions about your personalized treatment plan, please ask your esthetician upon arrival so they can be sure to give you exactly what you want and need during your visit.</p>
+    </div>
 </div>
-<div id = "servicesMenu">
-    <h2>Menu of Available Services</h2>
-    <div>
-        <h3>Facial Treatments</h3>
-        <p>The below facial treatments are recommended by our estheticians for your given skin type.</p>
+
+<div class = "rightcol">
+    <div class = "rightbox">
+        <h1 class = "title">Viv Day Spa</h1>
+    </div>
+    <div class = "rightbox" id = "clientProfile">
+        <h2 class = "header">My Profile</h2>
+        <p><u>NAME</u>: <span th:text = "${name}"></span></p>
+        <p><u>SKIN TYPE</u>: <span th:text = "${skintype}"></span></p>
+        <p><u>MANI/PEDI</u>: <span th:text = "${manipedi}"></span></p>
+    </div>
+    <div class = "rightbox" id = "servicesMenu">
+        <h2 class = "header">Menu of Available Services</h2>
+        <div>
+            <h3 class = "subheader">Facial Treatments</h3>
+            <p th:replace = "fragments :: facialIntro"></p>
+        </div>
         <table>
-            <th:block th:each = "facial : ${client.appropriateFacials}">
-                <tr>
-                    <td th:text = "${facial}"></td>
-                </tr>
-            </th:block>
+            <tr th:each = "service : ${appropriateFacials}">
+                <td th:text = "${service}"></td>
+            </tr>
         </table>
-    </div>
-    <div th:if = "${client.nailService == 'manicure'}">
-        <h3>Manicure</h3>
-        <p th:replace =  "fragments :: manicureDescription"></p>
-    </div>
-    <div th:if = "${client.nailService == 'pedicure'}">
-        <h3>Pedicure</h3>
-        <p th:replace = "fragments :: pedicureDescription"></p>
+        <div th:if = "${manipedi.equals('manicure') || manipedi.equals('both')}">
+            <h3 class = "subheader">Manicure</h3>
+            <p th:replace = "fragments :: manicureDescription"></p>
+        </div>
+        <div th:if = "${manipedi.equals('pedicure') || manipedi.equals('both')}">
+            <h3 class = "subheader">Pedicure</h3>
+            <p th:replace = "fragments :: pedicureDescription"></p>
+        </div>
     </div>
 </div>
+
+</div>
+<footer>
+    <div class = "polishintro">Ask about our hottest new colors for your mani/pedi</div>
+    <div class = "polish" th:each = "option : ${polishChoices}" th:style = "'background: ' + ${option}"></div>
+</footer>
+
 </body>
 </html>

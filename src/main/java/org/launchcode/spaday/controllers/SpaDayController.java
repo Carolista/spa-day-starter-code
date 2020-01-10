@@ -11,17 +11,110 @@ import java.util.ArrayList;
 @Controller
 public class SpaDayController {
 
-    @GetMapping
+    @GetMapping // from user signup part 2
     public String displayClientForm (Model model) {
+
         return "serviceSelection";
     }
 
-    @PostMapping
+//    @GetMapping // from original file
+//    public String customerForm () {
+//        String html = "<form method = 'post'>" +
+//                "Name: <br>" +
+//                "<input type = 'text' name = 'name'>" +
+//                "<br>Skin type: <br>" +
+//                "<select name = 'skintype'>" +
+//                "<option value = 'oily'>Oily</option>" +
+//                "<option value = 'combination'>Combination</option>" +
+//                "<option value = 'normal'>Normal</option>" +
+//                "<option value = 'dry'>Dry</option>" +
+//                "</select><br>" +
+//                "Manicure or Pedicure? <br>" +
+//                "<select name = 'manipedi'>" +
+//                "<option value = 'manicure'>Manicure</option>" +
+//                "<option value = 'pedicure'>Pedicure</option>" +
+//                "<option value = 'both'>Mani/Pedi Combo</option>" +
+//                "</select><br>" +
+//                "<input type = 'submit' value = 'Submit'>" +
+//                "</form>";
+//        return html;
+//    }
+//
+//    public boolean checkSkinType(String skinType, String facialType) {
+//        if (skinType.equals("oily")) {
+//            if (facialType.equals("Microdermabrasion") || facialType.equals("Rejuvenating")) {
+//                return true;
+//            }
+//            else {
+//                return false;
+//            }
+//        }
+//        else if (skinType.equals("combination")) {
+//            if (facialType.equals("Microdermabrasion") || facialType.equals("Rejuvenating") || facialType.equals("Enzyme Peel")) {
+//                return true;
+//            }
+//            else {
+//                return false;
+//            }
+//        }
+//        else if (skinType.equals("normal")) {
+//            return true;
+//        }
+//        else if (skinType.equals("dry")) {
+//            if (facialType.equals("Rejuvenating") || facialType.equals("Hydrofacial")) {
+//                return true;
+//            }
+//            else {
+//                return false;
+//            }
+//        }
+//        else {
+//            return true;
+//        }
+//    }
+
+    @PostMapping // from user signup part 2
     public String processClientForm(@RequestParam String skintype, @RequestParam String manipedi, Model model) {
         Client newClient = new Client(skintype, manipedi);
         newClient.setAppropriateFacials(skintype);
         model.addAttribute("client" , newClient);
+        model.addAttribute("manipedi", manipedi);
+        model.addAttribute("skintype", skintype);
 
         return "menu";
     }
+
+//    @PostMapping // from original file
+//    public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
+//
+//        ArrayList<String> facials = new ArrayList<String>();
+//        facials.add("Microdermabrasion");
+//        facials.add("Hydrofacial");
+//        facials.add("Rejuvenating");
+//        facials.add("Enzyme Peel");
+//
+//        ArrayList<String> appropriateFacials = new ArrayList<String>();
+//        for (int i = 0; i < facials.size(); i ++) {
+//            if (checkSkinType(skintype,facials.get(i))) {
+//                appropriateFacials.add(facials.get(i));
+//            }
+//        }
+//
+//        model.addAttribute("name", name);
+//        model.addAttribute("skintype", skintype);
+//        model.addAttribute("manipedi",manipedi);
+//        model.addAttribute("appropriateFacials", appropriateFacials);
+//
+//        ArrayList<String> polishChoices = new ArrayList<>();
+//        polishChoices.add("#ed553e");
+//        polishChoices.add("#ed3e4d");
+//        polishChoices.add("#d12c71");
+//        polishChoices.add("#a31787");
+//        polishChoices.add("#34a39e");
+//        polishChoices.add("#63c295");
+//
+//        model.addAttribute("polishChoices", polishChoices);
+//
+//        return "menu";
+//    }
 }
