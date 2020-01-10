@@ -6,6 +6,9 @@ import javax.validation.constraints.Size;
 
 public class User {
 
+    private int id;
+    private static int nextId = 1001;
+
     @NotBlank(message="Username is required.")
     @Size(min=5, max=15, message="Username must be between 5 and 15 characters.")
     private String username;
@@ -18,7 +21,8 @@ public class User {
     private String password;
 
     public User() {
-
+        this.id = nextId;
+        nextId++;
     }
 
     public User(String username, String email, String password) {
@@ -26,6 +30,10 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {

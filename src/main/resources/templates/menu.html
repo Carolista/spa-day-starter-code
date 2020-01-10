@@ -25,15 +25,18 @@
 </div>
 
 <div class = "rightcol">
+
     <div class = "rightbox">
         <h1 class = "title">Viv Day Spa</h1>
     </div>
+
     <div class = "rightbox" id = "clientProfile">
         <h2 class = "header">My Profile</h2>
         <p><u>NAME</u>: <span th:text = "${name}"></span></p>
         <p><u>SKIN TYPE</u>: <span th:text = "${skintype}"></span></p>
         <p><u>MANI/PEDI</u>: <span th:text = "${manipedi}"></span></p>
     </div>
+
     <div class = "rightbox" id = "servicesMenu">
         <h2 class = "header">Menu of Available Services</h2>
         <div>
@@ -41,9 +44,11 @@
             <p th:replace = "fragments :: facialIntro"></p>
         </div>
         <table>
-            <tr th:each = "service : ${appropriateFacials}">
-                <td th:text = "${service}"></td>
-            </tr>
+            <th:block th:each = "facial : ${client.appropriateFacials}">
+                <tr>
+                    <td th:text = "${facial}"></td>
+                </tr>
+            </th:block>
         </table>
         <div th:if = "${manipedi.equals('manicure') || manipedi.equals('both')}">
             <h3 class = "subheader">Manicure</h3>
@@ -53,14 +58,17 @@
             <h3 class = "subheader">Pedicure</h3>
             <p th:replace = "fragments :: pedicureDescription"></p>
         </div>
+
     </div>
+    <footer>
+        <div class = "polishintro">Ask about our hottest new colors for your mani/pedi</div>
+        <div class = "polish" th:each = "option : ${polishChoices}" th:style = "'background: ' + ${option}"></div>
+    </footer>
+
 </div>
 
 </div>
-<footer>
-    <div class = "polishintro">Ask about our hottest new colors for your mani/pedi</div>
-    <div class = "polish" th:each = "option : ${polishChoices}" th:style = "'background: ' + ${option}"></div>
-</footer>
+
 
 </body>
 </html>

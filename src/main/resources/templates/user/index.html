@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-    <title>Welcome</title>
 </head>
 <body>
-    <p th:text = "'Welcome ' + ${user.username} + '!'"></p>
-    <a th:href="@{/}">
-        Select your spa services here
-    </a>
+    <h1 th:text = "'Welcome, ' + ${user.username} + '!'"></h1>
+    <p>As a member of the Viv Day Spa, you now have access to the most luxurious of services, all of which can be customized for your skin type and preferred regimen.</p>
+    <a th:href="@{/}"><h3>Create Your Customized Service Profile</h3></a>
+
+    <h3 th:text="${title}"></h3>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tr th:each="user : ${users}">
+            <td th:text = "${user.id}"></td>
+            <td th:text = "${user.username}"></td>
+        </tr>
+    </table>
+
 </body>
 </html>
-
-<!--Shivany had me add th:field to see if it would help with the binding-->
