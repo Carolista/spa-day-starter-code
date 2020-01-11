@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-    <title>Sign Up</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
-    <form method = 'post'>
 
-        <div><label>Username:
-            <input type = 'text' th:field = "${user.username}" th:value="${user.username}">
-        </label></div>
-        <p class="error" th:errors="${user.username}"></p>
+<div class = "container">
 
-        <div><label>Email:
-            <input type = 'text' th:field = "${user.email}" th:value="${user.email}">
-        </label></div>
-        <p class="error" th:errors="${user.email}"></p>
+    <div th:replace="fragments :: leftColumn"></div>
 
-        <div><label>Password:
-            <input type = 'password' th:field = "${user.password}">
-        </label></div>
-        <p class="error" th:errors="${user.password}"></p>
+    <div class = "rightcol">
 
-        <div><label>Verify Password:
-            <input type = 'password' name = 'verify'>
-        </label></div>
-        <p th:text="${matchError}"></p>
+        <div th:replace = "fragments :: vivDiv"></div>
 
-        <div>
-            <input type = 'submit' value = 'Sign Up'>
+        <div class="rightbox">
+            <h3>Create Your Account</h3>
+            <form method = 'post'>
+
+                <div><label>Username:
+                    <input type = 'text' th:field = "${user.username}" th:value="${user.username}">
+                </label></div>
+                <p class="error" th:errors="${user.username}"></p>
+
+                <div><label>Email:
+                    <input type = 'text' th:field = "${user.email}" th:value="${user.email}">
+                </label></div>
+                <p class="error" th:errors="${user.email}"></p>
+
+                <div><label>Password:
+                    <input type = 'password' th:field = "${user.password}">
+                </label></div>
+                <p class="error" th:errors="${user.password}"></p>
+
+                <div><label>Verify Password:
+                    <input type = 'password' name = 'verify'>
+                </label></div>
+                <p th:text="${matchError}" class="error"></p>
+
+                <div>
+                    <input type = 'submit' value = 'Sign Up'>
+                </div>
+
+            </form>
         </div>
 
-    </form>
+    </div>
+
+</div>
 
 </body>
 </html>

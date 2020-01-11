@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class SpaDayController {
 
     @GetMapping
-    public String displayClientForm () {
+    public String displayClientForm (Model model) {
+        model.addAttribute("tab", "Viv Day Spa :: Select Your Personalized Services");
         return "serviceSelection";
     }
 
@@ -34,6 +35,7 @@ public class SpaDayController {
         polishChoices.add("#63c295");
 
         model.addAttribute("polishChoices", polishChoices);
+        model.addAttribute("page", "Viv Day Spa :: Your Personalized Menu");
 
         return "menu";
     }

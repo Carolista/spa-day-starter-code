@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <title th:text="${page}"></title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-    <title>Fragments</title>
+    <link href="https://fonts.googleapis.com/css?family=Gelasio|Montserrat|Satisfy&display=swap" rel="stylesheet">
 </head>
 <body>
     <p th:fragment = "facialIntro">The following treatments are recommended by our estheticians for your given skin type:</p>
     <p th:fragment = "manicureDescription">Our manicure is a great way to spend 30 minutes of your day! We use shea butter hand cream and the finest gel polish.</p>
     <p th:fragment = "pedicureDescription">Relax for 45 minutes in pure luxury! Our massage chairs and experienced nail techs are here to get your feet in shape for sandal season!</p>
+
+    <div class = "leftcol" th:fragment = "leftColumn">
+        <div class = "leftbox">
+            <img id="logo" src = "/images/viv-logo.png" th:src = "@{/images/viv-logo.png}"/>
+        </div>
+        <div class = "leftbox">
+            <p><span id = "vivify">viv·i·fy</span><br>
+                <span id = "pronunciation">/ˈvivəˌfī/</span><br>
+                <span id = "partofspeech">verb</span><br>
+                <span id = "definition">to enliven, awaken</span></p>
+            <p>Thank you for choosing Viv Day Spa! Throughout your experience, you will find deep relaxation of the body, calm for the soul, and a rejuvenation of spirit.</p>
+            <p>If you have any questions about your personalized treatment plan, please ask your esthetician upon arrival so they can be sure to give you exactly what you want and need during your visit.</p>
+        </div>
+    </div>
+
+    <div class = "rightbox" th:fragment="vivDiv">
+        <h1 class = "viv">Viv Day Spa</h1>
+    </div>
 </body>
 </html>

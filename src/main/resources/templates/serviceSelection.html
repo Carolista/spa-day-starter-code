@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Select Your Spa Services</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-</head>
+<head th:replace="fragments :: head"></head>
+
 <body>
-    <form method = 'post'>
-        <label>
-            Name:
-            <input type="text" name="name" />
-        </label>
-        <label>
-            Skin type:
-            <select name = 'skintype'>
-                <option value = 'oily'>Oily</option>
-                <option value = 'combination'>Combination</option>
-                <option value = 'normal'>Normal</option>
-                <option value = 'dry'>Dry</option>
-            </select>
-        </label>
-        <label>
-            Manicure or Pedicure?
-            <select name = 'manipedi'>
-                <option value = 'manicure'>Manicure</option>
-                <option value = 'pedicure'>Pedicure</option>
-                <option value = 'both'>Mani + Pedi</option>
-            </select>
-        </label>
-        <input type = 'submit' value = 'Submit'>
-    </form>
+
+<div class = "container">
+
+    <div th:replace="fragments :: leftColumn"></div>
+
+    <div class = "rightcol">
+
+        <div th:replace = "fragments :: vivDiv"></div>
+
+        <div class="rightbox">
+            <h3>Personalized Service Selection</h3>
+            <p>Please select your skin type and preferred nail service.</p>
+
+            <form method = 'post'>
+                <label>
+                    Name:
+                    <input type="text" name="name" />
+                </label>
+                <label>
+                    Skin type:
+                    <select name = 'skintype'>
+                        <option value = 'oily'>Oily</option>
+                        <option value = 'combination'>Combination</option>
+                        <option value = 'normal'>Normal</option>
+                        <option value = 'dry'>Dry</option>
+                    </select>
+                </label>
+                <label>
+                    Manicure or Pedicure?
+                    <select name = 'manipedi'>
+                        <option value = 'manicure'>Manicure</option>
+                        <option value = 'pedicure'>Pedicure</option>
+                        <option value = 'both'>Mani + Pedi</option>
+                    </select>
+                </label>
+                <input type = 'submit' value = 'Submit'>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

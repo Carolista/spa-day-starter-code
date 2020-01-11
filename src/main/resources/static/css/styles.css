@@ -78,12 +78,12 @@ h1 {
     color: #b36d68;
 }
 
-table {
-    padding: 10px;
+td, th {
+    padding: 5px 15px;
     text-align: left;
 }
 
-.title {
+.viv {
     font-family: 'Satisfy', serif;
     font-size: 5vw;
 }
@@ -128,6 +128,6 @@ footer {
 }
 
 .error {
-    color: red;
+    color: firebrick;
     font-weight: bold;
 }

@@ -1,34 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title>Spa Menu</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Gelasio|Montserrat|Satisfy&display=swap" rel="stylesheet">
-</head>
+<head th:replace="fragments :: head"></head>
+
 <body>
 
 <div class = "container">
 
-<div class = "leftcol">
-    <div class = "leftbox">
-        <img id="logo" src = "/images/viv-logo.png" th:src = "@{/images/viv-logo.png}"/>
-    </div>
-    <div class = "leftbox">
-        <p><span id = "vivify">viv·i·fy</span><br>
-            <span id = "pronunciation">/ˈvivəˌfī/</span><br>
-            <span id = "partofspeech">verb</span><br>
-            <span id = "definition">to enliven, awaken</span></p>
-        <p>Thank you for choosing Viv Day Spa! Throughout your experience, you will find deep relaxation of the body, calm for the soul, and a rejuvenation of spirit.</p>
-        <p>If you have any questions about your personalized treatment plan, please ask your esthetician upon arrival so they can be sure to give you exactly what you want and need during your visit.</p>
-    </div>
-</div>
+<div th:replace="fragments :: leftColumn"></div>
 
 <div class = "rightcol">
 
-    <div class = "rightbox">
-        <h1 class = "title">Viv Day Spa</h1>
-    </div>
+    <div th:replace = "fragments :: vivDiv"></div>
 
     <div class = "rightbox" id = "clientProfile">
         <h2 class = "header">My Profile</h2>

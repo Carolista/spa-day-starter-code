@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<div class = "container">
+
+    <div th:replace="fragments :: leftColumn"></div>
+
+    <div class = "rightcol">
+
+        <div th:replace = "fragments :: vivDiv"></div>
+
+        <div class="rightbox">
+            <h3 th:text = "${user.username}"></h3>
+            <p th:text="${user.email}"></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
